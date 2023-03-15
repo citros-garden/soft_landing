@@ -19,13 +19,13 @@ class Dynamics(Node):
         self.declare_parameter('g_y')
         self.declare_parameter('g_z')
 
-        self.declare_parameter('r_x') #r0
-        self.declare_parameter('r_y')
-        self.declare_parameter('r_z')
+        self.declare_parameter('r_x0') #r0
+        self.declare_parameter('r_y0')
+        self.declare_parameter('r_z0')
         
-        self.declare_parameter('v_x')
-        self.declare_parameter('v_y')
-        self.declare_parameter('v_z')
+        self.declare_parameter('v_x0')
+        self.declare_parameter('v_y0')
+        self.declare_parameter('v_z0')
         
 
         self.u_cmd =[0,0,0] #[ux ,uy ,uz ]
@@ -38,13 +38,13 @@ class Dynamics(Node):
         self.g_y = self.get_parameter('g_y').get_parameter_value().double_value
         self.g_z = self.get_parameter('g_z').get_parameter_value().double_value
 
-        self.r_x = self.get_parameter('r_x').get_parameter_value().double_value
-        self.r_y = self.get_parameter('r_y').get_parameter_value().double_value
-        self.r_z = self.get_parameter('r_z').get_parameter_value().double_value
+        self.r_x = self.get_parameter('r_x0').get_parameter_value().double_value
+        self.r_y = self.get_parameter('r_y0').get_parameter_value().double_value
+        self.r_z = self.get_parameter('r_z0').get_parameter_value().double_value
         
-        self.v_x = self.get_parameter('v_x').get_parameter_value().double_value
-        self.v_y = self.get_parameter('v_y').get_parameter_value().double_value
-        self.v_z = self.get_parameter('v_z').get_parameter_value().double_value
+        self.v_x = self.get_parameter('v_x0').get_parameter_value().double_value
+        self.v_y = self.get_parameter('v_y0').get_parameter_value().double_value
+        self.v_z = self.get_parameter('v_z0').get_parameter_value().double_value
        
 
         time.sleep(1)
@@ -77,6 +77,10 @@ class Dynamics(Node):
 
         self.state_msg.data = [self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y, self.v_z]
         self.state_pub.publish(self.state_msg)
+        
+        if self.r_z == 0.0 :
+            self.get_logger().info(f"pose: {[self.r_x , self.r_y ,self.r_z]}, controller: {self.u_cmd}", throttle_duration_sec=0.5)
+            exit()
         
         
 def main(args=None):

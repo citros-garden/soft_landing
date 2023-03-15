@@ -1,11 +1,11 @@
 dynamics:
   ros__parameters:
-    r_x: 0.0
-    r_y: 0.0
-    r_z: 100.0
-    v_x: 0.0
-    v_y: 0.0
-    v_z: 0.0
+    r_x0: 0.0
+    r_y0: 0.0
+    r_z0: 100.0
+    v_x0: 0.0
+    v_y0: 0.0
+    v_z0: 0.0
     g_x: 0.0
     g_y: 0.0
     g_z: 9.81
