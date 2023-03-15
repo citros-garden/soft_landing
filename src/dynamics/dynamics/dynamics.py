@@ -60,7 +60,10 @@ class Dynamics(Node):
         self.v_x += ((self.u_cmd[0] - self.g_x) * self.dt) # Integral(u - g)+v0 = v
         self.v_y += ((self.u_cmd[1] - self.g_y) * self.dt)
         self.v_z += ((self.u_cmd[2] - self.g_z) * self.dt)
-        self.v_z = min(0.0,self.v_z)
+        
+        if self.r_z <= 0.0:
+            self.v_z == max(0.0,self.v_z)
+            
 
         self.r_x += (self.v_x * self.dt) # Integral(v)+r0 = x
         self.r_y += (self.v_y * self.dt)
