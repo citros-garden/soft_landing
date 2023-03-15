@@ -12,7 +12,7 @@ class Dynamics(Node):
         super().__init__('dynamics')
         
         self.state_pub = self.create_publisher(Float64MultiArray , '/dynamics/state', 10)
-        self.u_sub = self.create_subscription(Float64 , '/controller/command', self.u_cb, 10)
+        self.u_sub = self.create_subscription(Float64MultiArray , '/controller/command', self.u_cb, 10)
 
         self.dt = 0.01  # seconds
         # define parameters
@@ -30,7 +30,7 @@ class Dynamics(Node):
         self.declare_parameter('v_z')
         
 
-        self.u_cmd = 0
+        self.u_cmd = Float64()
         self.state = Float64MultiArray()
         
 
