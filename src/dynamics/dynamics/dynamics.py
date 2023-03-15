@@ -30,8 +30,8 @@ class Dynamics(Node):
         self.declare_parameter('v_z')
         
 
-        self.u_cmd = Float64()
-        self.state = Float64MultiArray()
+        self.u_cmd = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
+        self.state = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
         
 
         time.sleep(1)
@@ -59,9 +59,9 @@ class Dynamics(Node):
     def solve_ode(self):
 
 
-        self.v_x += ((self.u_x - self.g_x) * self.dt) # Integral(u - g)+v0 = v
-        self.v_y += ((self.u_y - self.g_y) * self.dt)
-        self.v_z += ((self.u_z - self.g_z) * self.dt)
+        self.v_x += ((self.u_cmd[0] - self.g_x) * self.dt) # Integral(u - g)+v0 = v
+        self.v_y += ((self.u_cmd[1] - self.g_y) * self.dt)
+        self.v_z += ((self.u_cmd[2] - self.g_z) * self.dt)
 
         self.r_x += (self.v_x * self.dt) # Integral(v)+r0 = x
         self.r_y += (self.v_y * self.dt)

@@ -24,7 +24,7 @@ class Controller(Node):
         self.declare_parameter('setpoint_v_z')
         
 
-        self.u_msg = Float64() 
+        self.u_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
         self.state = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
 
 
@@ -33,8 +33,8 @@ class Controller(Node):
         self.setpoint_r_x = self.get_parameter('setpoint_r_x').get_parameter_value().double_value
         self.setpoint_r_y = self.get_parameter('setpoint_r_y').get_parameter_value().double_value
         self.setpoint_r_z = self.get_parameter('setpoint_r_z').get_parameter_value().double_value
-        self.setpoint_v_x = self.get_parameter('setpoint_v_z').get_parameter_value().double_value
-        self.setpoint_v_y = self.get_parameter('setpoint_v_z').get_parameter_value().double_value
+        self.setpoint_v_x = self.get_parameter('setpoint_v_x').get_parameter_value().double_value
+        self.setpoint_v_y = self.get_parameter('setpoint_v_y').get_parameter_value().double_value
         self.setpoint_v_z = self.get_parameter('setpoint_v_z').get_parameter_value().double_value
 
         time.sleep(1)
