@@ -1,6 +1,6 @@
 dynamics:
   ros__parameters:
-    r_x0: 0.0
+    r_x0: 10.0
     r_y0: 0.0
     r_z0: 100.0
     v_x0: 0.0
@@ -8,4 +8,4 @@ dynamics:
     v_z0: 0.0
     g_x: 0.0
     g_y: 0.0
-    g_z: 9.81
+    g_z: 1.62 # [m/s^2] on the moon
