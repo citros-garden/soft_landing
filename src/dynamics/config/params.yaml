@@ -1,0 +1,9 @@
+dynamics:
+  ros__parameters:
+    r_x: 1.0
+    r_y: 1.0
+    r_z: 1.0
+    v_x: 0.0
+    v_y: 0.0
+    v_z: 0.0
+    g: 9.81
