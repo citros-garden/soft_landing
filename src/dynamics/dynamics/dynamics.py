@@ -2,8 +2,6 @@ import rclpy
 from rclpy.node import Node
 import time
 
-from std_msgs.msg import Float64
-from geometry_msgs.msg import vector3
 from std_msgs.msg import Float64MultiArray 
 
 class Dynamics(Node):
@@ -74,7 +72,7 @@ class Dynamics(Node):
 
         self.get_logger().info(f"pose: {[self.r_x , self.r_y ,self.r_z]}, controller: {self.u_cmd}", throttle_duration_sec=0.5)
 
-        self.state_msg.data = [self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y self.v_z]
+        self.state_msg.data = [self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y, self.v_z]
         self.state_pub.publish(self.state_msg)
         
         
