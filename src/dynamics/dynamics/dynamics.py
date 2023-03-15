@@ -21,7 +21,7 @@ class Dynamics(Node):
         self.declare_parameter('g_y')
         self.declare_parameter('g_z')
 
-        self.declare_parameter('r_x')
+        self.declare_parameter('r_x') #r0
         self.declare_parameter('r_y')
         self.declare_parameter('r_z')
         
@@ -30,8 +30,8 @@ class Dynamics(Node):
         self.declare_parameter('v_z')
         
 
-        self.u_cmd = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
-        self.state = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
+        self.u_cmd =[0,0,0] #[ux ,uy ,uz ]
+        self.state_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
         
 
         time.sleep(1)
@@ -54,7 +54,7 @@ class Dynamics(Node):
         self.timer = self.create_timer(self.dt, self.step)
 
     def u_cb(self, msg):
-        self.u_cmd = msg.data
+        self.u_cmd = msg.data #return list
 
     def solve_ode(self):
 
@@ -74,7 +74,8 @@ class Dynamics(Node):
 
         self.get_logger().info(f"pose: {[self.r_x , self.r_y ,self.r_z]}, controller: {self.u_cmd}", throttle_duration_sec=0.5)
 
-        self.state_pub.publish([self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y self.v_z])
+        self.state_msg.data = [self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y self.v_z]
+        self.state_pub.publish(self.state_msg)
         
         
 def main(args=None):
