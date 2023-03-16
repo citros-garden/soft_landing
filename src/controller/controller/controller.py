@@ -2,7 +2,6 @@ import rclpy
 from rclpy.node import Node
 import time
 
-from std_msgs.msg import Float64
 from std_msgs.msg import Float64MultiArray  
 
 class Controller(Node):
@@ -13,7 +12,7 @@ class Controller(Node):
 
         self.state_sub = self.create_subscription(Float64MultiArray, '/dynamics/state', self.state_cb, 10)
        
-        self.dt = 0.1  # seconds ?
+        self.dt = 0.1 
         # define parameters        
 
         self.declare_parameter('setpoint_r_x')
@@ -47,7 +46,7 @@ class Controller(Node):
    
 def main(args=None):
     rclpy.init(args=args)
-    controller = Pid()
+    controller = Controller()
     rclpy.spin(controller)
     controller.destroy_node()
     rclpy.shutdown()

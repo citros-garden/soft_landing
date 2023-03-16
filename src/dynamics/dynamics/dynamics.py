@@ -28,7 +28,7 @@ class Dynamics(Node):
         self.declare_parameter('v_z0')
         
 
-        self.u_cmd =[0,0,0] #[ux ,uy ,uz ]
+        self.u_cmd =[0,0,100] #[ux ,uy ,uz ]
         self.state_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
         
 

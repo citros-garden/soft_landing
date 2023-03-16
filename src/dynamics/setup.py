@@ -18,7 +18,7 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='ros',
-    maintainer_email='iftahnaf@gmail.com',
+    maintainer_email='orr@lulav.space',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],

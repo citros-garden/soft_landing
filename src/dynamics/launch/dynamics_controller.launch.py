@@ -31,7 +31,7 @@ def generate_launch_description():
         package = 'dynamics',
         name = 'free_dynamics',
         executable = 'dynamics',
-        parameters = [{'r_x': 0.0, 'r_y': 0.0, 'r_z': 100.0, 'v_x': 0.0, 'v_y': 0.0, 'v_z': 0.0 , 'g_x':0.0 ,'g_y':0.0 ,'g_z':9.81}],
+        parameters = [{'r_x0': 0.0, 'r_y0': 0.0, 'r_z0': 0.0, 'v_x0': 0.0, 'v_y0': 0.0, 'v_z0': 0.0 , 'g_x':0.0 ,'g_y':0.0 ,'g_z':0.0}],
         remappings=[
             ('dynamics/position', '/free_dynamics/position'),
             ('dynamics/velocity', '/free_dynamics/velocity'),
@@ -42,7 +42,7 @@ def generate_launch_description():
         package = 'controller',
         name = 'free_controller',
         executable = 'controller',
-        parameters = [{'setpoint_r_x': 0.0, 'setpoint_r_y': 0.0, 'setpoint_r_z': 0.0 , 'setpoint_v_x': 0.0 , 'setpoint_v_y': 0.0,'setpoint_v_z': 0.0}],
+        parameters = [{'setpoint_r_x': 0.0, 'setpoint_r_y': 0.0, 'setpoint_r_z': 10.0 , 'setpoint_v_x': 0.0 , 'setpoint_v_y': 0.0,'setpoint_v_z': 0.0}],
         remappings=[
             ('dynamics/position', '/free_dynamics/position'),
             ('dynamics/velocity', '/free_dynamics/velocity'),
@@ -52,6 +52,6 @@ def generate_launch_description():
     )
     ld.add_action(dynamics)
     ld.add_action(controller)
-    ld.add_action(free_dynamics)
-    ld.add_action(free_controller)
+    # ld.add_action(free_dynamics)
+    # ld.add_action(free_controller)
     return ld
