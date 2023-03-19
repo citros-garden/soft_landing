@@ -1,6 +1,9 @@
-pid:
+controller:
   ros__parameters:
-    kp: 0.6
-    ki: 0.2
-    kd: 2.0
-    setpoint: 0.0
+    setpoint_r_x: 0.0
+    setpoint_r_y: 0.0
+    setpoint_r_z: 100.0
+    setpoint_v_x: 0.0
+    setpoint_v_y: 0.0
+    setpoint_v_z: 0.0
+    g: 1.62 # [m/s^2] on the moon
