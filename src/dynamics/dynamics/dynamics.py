@@ -82,7 +82,7 @@ class Dynamics(Node):
         self.state_pub.publish(self.state_msg)
         
         if self.r_z == 0.0 : # end when we leand
-            self.get_logger().info(f"pose: {[self.r_x , self.r_y ,self.r_z]}, controller: {self.u_cmd}", throttle_duration_sec=0.5)
+            self.get_logger().info(f"r: {[self.r_x , self.r_y ,self.r_z]} velocity {[self.v_x , self.v_y ,self.v_z]}, controller: {self.u_cmd[1]}", throttle_duration_sec=0.5)
             exit()
         
         
