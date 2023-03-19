@@ -1,4 +1,4 @@
-Controller:
+controller:
   ros__parameters:
     setpoint_r_x: 0.0
     setpoint_r_y: 0.0
@@ -6,3 +6,4 @@ Controller:
     setpoint_v_x: 0.0
     setpoint_v_y: 0.0
     setpoint_v_z: 0.0
+    g: 1.62 # [m/s^2] on the moon
