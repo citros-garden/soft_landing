@@ -15,22 +15,17 @@ class Controller(Node):
         self.vg = pyvectorguidance.VectorGuidance()
 
         # define parameters        
-        self.declare_parameter('setpoint_r_x')
-        self.declare_parameter('setpoint_r_y')
-        self.declare_parameter('setpoint_r_z')
-        self.declare_parameter('setpoint_v_x')
-        self.declare_parameter('setpoint_v_y')
-        self.declare_parameter('setpoint_v_z')
-        self.declare_parameter('g') 
-        self.declare_parameter('um')
-        self.setpoint_r_x = 0
-        self.setpoint_r_y = 0
-        self.setpoint_r_z = 0
-        self.setpoint_v_x = 0
-        self.setpoint_v_y = 0
-        self.setpoint_v_z = 0
-        self.g = [0,0,0]
-        self.um = 0
+        self.declare_parameter('setpoint_r_x', 1.0)
+        self.declare_parameter('setpoint_r_y', 1.0)
+        self.declare_parameter('setpoint_r_z', 1.0)
+        self.declare_parameter('setpoint_v_x', 1.0)
+        self.declare_parameter('setpoint_v_y', 1.0)
+        self.declare_parameter('setpoint_v_z', 1.0)
+        self.declare_parameter('g', 1.0) 
+        self.declare_parameter('um', 1.0)
+        
+        # self.g = [0,0,0]
+        # self.um = 0
 
 
         self.u_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
@@ -62,17 +57,17 @@ class Controller(Node):
 
         norm_r = np.linalg.norm(self.r)
         norm_v = np.linalg.norm(self.v)
-        
         tgo = norm_r/(norm_v+0.01)
         self.get_logger().info(f"tgo is = {tgo}, r= {self.r},v= {self.v}",throttle_duration_sec=0.5)
 
         try:
             u = self.vg.soft_landing_controller_lq(self.r, self.v,tgo, self.g)
         except:
-            u = [0.0,0.0,0.0]
-        else:
-            u = [float(x) for x in u]
+            tgo = 0.0
+            self.get_logger().info(f"tgo is = {tgo}, r= {self.r},v= {self.v}",throttle_duration_sec=0.5)
+            exit()
         
+        u = [float(x) for x in u]
         self.u_msg.data = u
         self.u_pub.publish(self.u_msg)
        
