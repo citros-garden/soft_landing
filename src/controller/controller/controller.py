@@ -55,8 +55,8 @@ class Controller(Node):
         self.r = msg.data[0:2]
         self.v = msg.data[3:5]
         
-        tgo = self.vg.soft_landing_tgo_lq(self.r, self.v, self.um, self.g)[0]
-        u = self.vg.soft_landing_controller_lq(self.r, self.v, rho_u, tgo, self.g)
+        tgo = self.vg.soft_landing_tgo_lq(self.r, self.v, self.um, self.g)
+        u = self.vg.soft_landing_controller_lq(self.r, self.v,tgo, self.g)
         
         self.u_msg.data = u
         self.u_pub.publish(self.u_msg)
