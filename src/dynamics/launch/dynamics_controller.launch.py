@@ -2,6 +2,8 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch import LaunchDescription, launch_description_sources
+from launch.actions import IncludeLaunchDescription
 def generate_launch_description():
     ld = LaunchDescription()
     dynamics_config = os.path.join(
@@ -50,6 +52,9 @@ def generate_launch_description():
         ]
         
     )
+    bridge_dir = get_package_share_directory('rosbridge_server')
+    bridge_launch =  IncludeLaunchDescription(launch_description_sources.FrontendLaunchDescriptionSource(bridge_dir + '/launch/rosbridge_websocket_launch.xml')) 
+    ld.add_action(bridge_launch)
     ld.add_action(dynamics)
     ld.add_action(controller)
     # ld.add_action(free_dynamics)

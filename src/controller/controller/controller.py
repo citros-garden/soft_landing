@@ -40,25 +40,25 @@ class Controller(Node):
         self.g = [0,0,self.get_parameter('setpoint_v_z').get_parameter_value().double_value]
         self.um = self.get_parameter('um').get_parameter_value().double_value
         self.e = self.get_parameter('e').get_parameter_value().double_value
+        self.r_target = [self.setpoint_r_x,self.setpoint_r_y,self.setpoint_r_z]
+        self.v_target = [self.setpoint_v_x,self.setpoint_v_y,self.setpoint_v_z]
         
     def state_cb(self, msg):
         self.r_tmp = msg.data[0:3]
         self.v_tmp = msg.data[3:6]
-        self.r =np.array( [self.r_tmp[0],self.r_tmp[1],self.r_tmp[2]])
-        self.v =np.array( [self.v_tmp[0],self.v_tmp[1],self.v_tmp[2]])
-        norm_r = np.linalg.norm(self.r)
-        norm_v = np.linalg.norm(self.v)
+        self.r =np.array( [self.r_target[0]-self.r_tmp[0],self.r_target[1]-self.r_tmp[1],self.r_target[2]-self.r_tmp[2]])
+        self.v =np.array( [self.v_target[0]-self.v_tmp[0],self.v_target[1]-self.v_tmp[1],self.v_target[2]-self.v_tmp[2]])
         tgo = self.vg.soft_landing_tgo_lq(self.r,self.v,self.um,self.g)[0]
         self.get_logger().info(f"tgo is = {tgo:.3f}, r=  [{self.r[0]:.3f}, {self.r[1]:.3f}, {self.r[2]:.3f}],v= [{self.v[0]:.3f}, {self.v[1]:.3f}, {self.v[2]:.3f}]",throttle_duration_sec=0.1)
         
         if tgo > self.e:
-            u = -self.vg.soft_landing_controller_lq(self.r, self.v,tgo, self.g)
+            u = self.vg.soft_landing_controller_lq(self.r, self.v,tgo, self.g)
         else:
             u = [0,0,0]
-            # self.miss_distance = 
-            # self.miss_velocity = 
+            self.miss_distance = np.linalg.norm(self.r)
+            self.miss_velocity = np.linalg.norm(self.v)
 
-            # self.get_logger().info(f"The miss distance is: [{}] and the miss velocity is: [{}]")
+            self.get_logger().info(f"The miss distance is: [{self.miss_distance}] and the miss velocity is: [{self.miss_velocity}]")
             exit()
             
         u = [float(x) for x in u]
