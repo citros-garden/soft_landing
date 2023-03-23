@@ -8,3 +8,4 @@ controller:
     setpoint_v_z: 0.0
     g: 1.62 # [m/s^2] on the moon
     um: 20.0
+    e: 0.02
