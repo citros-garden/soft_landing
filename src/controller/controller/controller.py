@@ -15,14 +15,14 @@ class Controller(Node):
         self.vg = pyvectorguidance.VectorGuidance()
 
         # define parameters        
-        self.declare_parameter('setpoint_r_x', 1.0)
-        self.declare_parameter('setpoint_r_y', 1.0)
-        self.declare_parameter('setpoint_r_z', 1.0)
-        self.declare_parameter('setpoint_v_x', 1.0)
-        self.declare_parameter('setpoint_v_y', 1.0)
-        self.declare_parameter('setpoint_v_z', 1.0)
-        self.declare_parameter('g', 1.0) 
-        self.declare_parameter('um', 1.0)
+        self.declare_parameter('setpoint_r_x', 0.0)
+        self.declare_parameter('setpoint_r_y', 0.0)
+        self.declare_parameter('setpoint_r_z', 0.0)
+        self.declare_parameter('setpoint_v_x', 0.0)
+        self.declare_parameter('setpoint_v_y', 0.0)
+        self.declare_parameter('setpoint_v_z', 0.0)
+        self.declare_parameter('g', 0.0) 
+        self.declare_parameter('um', 0.0)
         
         # self.g = [0,0,0]
         # self.um = 0
