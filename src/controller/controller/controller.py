@@ -11,10 +11,10 @@ class Controller(Node):
         super().__init__('controller')
         self.u_pub = self.create_publisher(Float64MultiArray, '/controller/command', 10)
         self.state_sub = self.create_subscription(Float64MultiArray, '/dynamics/state', self.state_cb, 10)
-        self.dt = 0.1 
         self.vg = pyvectorguidance.VectorGuidance()
 
-        # define parameters        
+        # define parameters
+        self.declare_parameter('dt', 0.01)       
         self.declare_parameter('setpoint_r_x', 0.0)
         self.declare_parameter('setpoint_r_y', 0.0)
         self.declare_parameter('setpoint_r_z', 0.0)
@@ -31,6 +31,7 @@ class Controller(Node):
         
         time.sleep(1)
 
+        self.dt = self.get_parameter('dt').get_parameter_value().double_value
         self.setpoint_r_x = self.get_parameter('setpoint_r_x').get_parameter_value().double_value
         self.setpoint_r_y = self.get_parameter('setpoint_r_y').get_parameter_value().double_value
         self.setpoint_r_z = self.get_parameter('setpoint_r_z').get_parameter_value().double_value

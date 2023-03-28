@@ -10,9 +10,9 @@ class Dynamics(Node):
         super().__init__('dynamics')
         self.state_pub = self.create_publisher(Float64MultiArray , '/dynamics/state', 10)
         self.u_sub = self.create_subscription(Float64MultiArray , '/controller/command', self.u_cb, 10)
-        self.dt = 0.01  # seconds
+         
         # define parameters
-
+        self.declare_parameter('dt', 0.01)# seconds
         self.declare_parameter('g_x',0.0)
         self.declare_parameter('g_y',0.0)
         self.declare_parameter('g_z',1.62)
@@ -27,6 +27,7 @@ class Dynamics(Node):
 
         time.sleep(1)
 
+        self.dt = self.get_parameter('dt').get_parameter_value().double_value
         self.g_x = self.get_parameter('g_x').get_parameter_value().double_value
         self.g_y = self.get_parameter('g_y').get_parameter_value().double_value
         self.g_z = self.get_parameter('g_z').get_parameter_value().double_value

@@ -9,3 +9,4 @@ dynamics:
     g_x: 0.0
     g_y: 0.0
     g_z: 1.62 # [m/s^2] on the moon
+    dt: 0.01 #sec
