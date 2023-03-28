@@ -52,7 +52,7 @@ class Controller(Node):
         tgo = self.vg.soft_landing_tgo_lq(self.r,self.v,self.um,self.g)[0]
         self.miss_distance = np.linalg.norm(self.r)
         self.miss_velocity = np.linalg.norm(self.v)
-        self.get_logger().info(f"tgo is = {tgo:.3f}, The miss distance is: [{self.miss_distance}] and the miss velocity is: [{self.miss_velocity}]",throttle_duration_sec=0.1)
+        self.get_logger().info(f"tgo is = {tgo:.3f}, The miss distance is: [{self.miss_distance:.3f}] and the miss velocity is: [{self.miss_velocity:.3f}]",throttle_duration_sec=0.1)
         # self.get_logger().info(f"tgo is = {tgo:.3f}, r=  [{self.r[0]:.3f}, {self.r[1]:.3f}, {self.r[2]:.3f}],v= [{self.v[0]:.3f}, {self.v[1]:.3f}, {self.v[2]:.3f}]",throttle_duration_sec=0.1)
 
         if tgo > self.e:
