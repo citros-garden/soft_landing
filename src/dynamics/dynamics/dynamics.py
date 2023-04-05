@@ -25,7 +25,7 @@ class Dynamics(Node):
         self.u_cmd =[0,0,0] #[ux ,uy ,uz ]
         self.state_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
 
-        time.sleep(1)
+        time.sleep(8)
 
         self.dt = self.get_parameter('dt').get_parameter_value().double_value
         self.g_x = self.get_parameter('g_x').get_parameter_value().double_value

@@ -17,7 +17,9 @@ when `u` is the controller fedback , `g` is the gravity vector `r0` , `v0` is th
 
 # The controller
 Because we simulate a soft landing, we want that our object to land with the minimum velocity (v_f--->0) at the landing point `u0` we want.
-?
+the controller is based on this paper:
+
+*S. Gutman, "Rendezvous and Soft Landing in Closed Form via LQ Optimization," 2019 27th Mediterranean Conference on Control and Automation (MED), Akko, Israel, 2019, pp. 536-540, doi: 10.1109/MED.2019.8798572.*
 
 
 
@@ -45,7 +47,7 @@ Because we simulate a soft landing, we want that our object to land with the min
 
 
 # Run the default example:
-Run the example of an object with the initial condition: r0 =[10,0,100] [meter] and v0 = [0,0,0] [meter/sec] that we want to land in the point u0=[0,0,0] on the moon g=[0,0,1.62] [meter/sec^2].
+Run the example of an object with the initial condition: $r_0 =[10,0,100][m]$ and $v_0 = [0,0,0] [m/s]$ that we want to land in the point %u_0=[0,0,0]% on the moon $g=[0,0,1.62] [m/sec^2]$.
 
 first, build the nodes:
 ```sh
