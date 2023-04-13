@@ -58,5 +58,3 @@ then,run the launch file:
 ```sh
     ros2 launch dynamics dynamics_controller.launch.py
 ```
-
-####add simulation in foxglove

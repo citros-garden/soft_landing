@@ -14,7 +14,6 @@ class Controller(Node):
         self.miss_velocity_pub = self.create_publisher(Float64, '/controller/miss_velocity', 10)
         self.state_sub = self.create_subscription(Float64MultiArray, '/dynamics/state', self.state_cb, 10)
         self.vg = pyvectorguidance.VectorGuidance()
-
         # define parameters
         self.declare_parameter('dt', 0.01)       
         self.declare_parameter('setpoint_r_x', 0.0)
@@ -32,9 +31,7 @@ class Controller(Node):
         self.v = []
         self.miss_distance_msg = Float64()
         self.miss_velocity_msg = Float64()
-        
         time.sleep(1)
-
         self.dt = self.get_parameter('dt').get_parameter_value().double_value
         self.setpoint_r_x = self.get_parameter('setpoint_r_x').get_parameter_value().double_value
         self.setpoint_r_y = self.get_parameter('setpoint_r_y').get_parameter_value().double_value
@@ -59,8 +56,6 @@ class Controller(Node):
         type(miss_distance)
         miss_velocity= np.linalg.norm(v)
         self.get_logger().info(f"tgo is = {tgo:.3f}, The miss distance is: [{miss_distance:.3f}] and the miss velocity is: [{miss_velocity:.3f}]",throttle_duration_sec=1)
-        # self.get_logger().info(f"tgo is = {tgo:.3f}, r=  [{self.r[0]:.3f}, {self.r[1]:.3f}, {self.r[2]:.3f}],v= [{self.v[0]:.3f}, {self.v[1]:.3f}, {self.v[2]:.3f}]",throttle_duration_sec=0.1)
-
         if tgo > self.e:
             u = self.vg.soft_landing_controller_lq(r, v,tgo, self.g)
         else:
@@ -70,24 +65,20 @@ class Controller(Node):
 
             self.get_logger().info(f"The miss distance is: [{miss_distance}] and the miss velocity is: [{miss_velocity}]")
             exit()
-            
         u = [float(x) for x in u]
         self.u_msg.data = u
-        
         self.miss_distance_msg.data = miss_distance
         self.miss_velocity_msg.data = miss_velocity
         self.u_pub.publish(self.u_msg)
         self.miss_distance_pub.publish(self.miss_distance_msg)
         self.miss_velocity_pub.publish(self.miss_velocity_msg)
        
-
 def main(args=None):
     rclpy.init(args=args)
     controller = Controller()
     rclpy.spin(controller)
     controller.destroy_node()
     rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()
