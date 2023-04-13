@@ -10,19 +10,20 @@ class Dynamics(Node):
         super().__init__('dynamics')
         self.state_pub = self.create_publisher(Float64MultiArray , '/dynamics/state', 10)
         self.u_sub = self.create_subscription(Float64MultiArray , '/controller/command', self.u_cb, 10)
-        # define parameters
-        self.declare_parameter('dt', 0.01)# seconds
-        self.declare_parameter('g_x',0.0)
-        self.declare_parameter('g_y',0.0)
-        self.declare_parameter('g_z',1.62)
-        self.declare_parameter('r_x0',0.0) #r0
-        self.declare_parameter('r_y0',0.0)
-        self.declare_parameter('r_z0',100.0)
-        self.declare_parameter('v_x0',0.0)
-        self.declare_parameter('v_y0',0.0)
-        self.declare_parameter('v_z0',0.0)
         self.u_cmd =[0,0,0] #[ux ,uy ,uz ]
         self.state_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
+        self.declare_parameters(
+            namespace='',
+            parameters=[('dt', 0.01),
+                        ('g_x',0.0),
+                        ('g_y',0.0),
+                        ('g_z',1.62),
+                        ('r_x0',0.0),
+                        ('r_y0',0.0),
+                        ('r_z0',0.0),
+                        ('v_x0',0.0),
+                        ('v_y0',0.0),
+                        ('v_z0',0.0)])
         time.sleep(8)
         self.dt = self.get_parameter('dt').get_parameter_value().double_value
         self.g_x = self.get_parameter('g_x').get_parameter_value().double_value
