@@ -3,13 +3,15 @@ from rclpy.node import Node
 import time
 import pyvectorguidance
 import numpy as np
-from std_msgs.msg import Float64MultiArray  
+from std_msgs.msg import Float64MultiArray , Float64 
 
 class Controller(Node):
 
     def __init__(self):
         super().__init__('controller')
         self.u_pub = self.create_publisher(Float64MultiArray, '/controller/command', 10)
+        self.miss_distance_pub = self.create_publisher(Float64, '/controller/miss_distance', 10)
+        self.miss_velocity_pub = self.create_publisher(Float64, '/controller/miss_velocity', 10)
         self.state_sub = self.create_subscription(Float64MultiArray, '/dynamics/state', self.state_cb, 10)
         self.vg = pyvectorguidance.VectorGuidance()
 
@@ -28,6 +30,8 @@ class Controller(Node):
         self.state = [] #[rx ,ry ,rz ,vx,vy,vz]
         self.r = []
         self.v = []
+        self.miss_distance_msg = Float64()
+        self.miss_velocity_msg = Float64()
         
         time.sleep(1)
 
@@ -45,29 +49,36 @@ class Controller(Node):
         self.v_target = [self.setpoint_v_x,self.setpoint_v_y,self.setpoint_v_z]
         
     def state_cb(self, msg):
-        self.r_tmp = msg.data[0:3]
-        self.v_tmp = msg.data[3:6]
-        self.r =np.array( [self.r_target[0]-self.r_tmp[0],self.r_target[1]-self.r_tmp[1],self.r_target[2]-self.r_tmp[2]])
-        self.v =np.array( [self.v_target[0]-self.v_tmp[0],self.v_target[1]-self.v_tmp[1],self.v_target[2]-self.v_tmp[2]])
-        tgo = self.vg.soft_landing_tgo_lq(self.r,self.v,self.um,self.g)[0]
-        self.miss_distance = np.linalg.norm(self.r)
-        self.miss_velocity = np.linalg.norm(self.v)
-        self.get_logger().info(f"tgo is = {tgo:.3f}, The miss distance is: [{self.miss_distance:.3f}] and the miss velocity is: [{self.miss_velocity:.3f}]",throttle_duration_sec=1)
+        r_tmp = msg.data[0:3]
+        v_tmp = msg.data[3:6]
+        r =np.array( [self.r_target[0]-r_tmp[0],self.r_target[1]-r_tmp[1],self.r_target[2]-r_tmp[2]])
+        v =np.array( [self.v_target[0]-v_tmp[0],self.v_target[1]-v_tmp[1],self.v_target[2]-v_tmp[2]])
+        tgo = self.vg.soft_landing_tgo_lq(r,v,self.um,self.g)[0]
+        miss_distance = np.linalg.norm(r)
+        print(miss_distance)
+        type(miss_distance)
+        miss_velocity= np.linalg.norm(v)
+        self.get_logger().info(f"tgo is = {tgo:.3f}, The miss distance is: [{miss_distance:.3f}] and the miss velocity is: [{miss_velocity:.3f}]",throttle_duration_sec=1)
         # self.get_logger().info(f"tgo is = {tgo:.3f}, r=  [{self.r[0]:.3f}, {self.r[1]:.3f}, {self.r[2]:.3f}],v= [{self.v[0]:.3f}, {self.v[1]:.3f}, {self.v[2]:.3f}]",throttle_duration_sec=0.1)
 
         if tgo > self.e:
-            u = self.vg.soft_landing_controller_lq(self.r, self.v,tgo, self.g)
+            u = self.vg.soft_landing_controller_lq(r, v,tgo, self.g)
         else:
             u = [0,0,0]
-            self.miss_distance = np.linalg.norm(self.r)
-            self.miss_velocity = np.linalg.norm(self.v)
+            miss_distance = np.linalg.norm(r)
+            miss_velocity= np.linalg.norm(v)
 
-            self.get_logger().info(f"The miss distance is: [{self.miss_distance}] and the miss velocity is: [{self.miss_velocity}]")
+            self.get_logger().info(f"The miss distance is: [{miss_distance}] and the miss velocity is: [{miss_velocity}]")
             exit()
             
         u = [float(x) for x in u]
         self.u_msg.data = u
+        
+        self.miss_distance_msg.data = miss_distance
+        self.miss_velocity_msg.data = miss_velocity
         self.u_pub.publish(self.u_msg)
+        self.miss_distance_pub.publish(self.miss_distance_msg)
+        self.miss_velocity_pub.publish(self.miss_velocity_msg)
        
 
 def main(args=None):

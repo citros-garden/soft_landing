@@ -61,7 +61,7 @@ class Dynamics(Node):
         self.solve_ode()
         self.state_msg.data = [self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y, self.v_z]
         self.state_pub.publish(self.state_msg)
-        if self.r_z == 0.0 : # end when we leand
+        if self.r_z < 0.1 : # end when we leand
             exit()
         
 def main(args=None):
