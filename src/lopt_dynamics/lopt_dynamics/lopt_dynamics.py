@@ -61,6 +61,17 @@ class Lopt_dynamics(Node):
 
         self.i = 0
         
+        #            [ x[0],  x[1],  x[2],  x[3],  x[4],  x[5] ]
+        #            [   x,     y,     z,    Vx,    Vy,    Vz  ]
+        tf0 = 15 # guess tf 
+        xf0 = [ self.x_xf,  self.x_yf,  self.x_zf,    0,     0,     0  ] # target conditions
+        x00 = [ self.x_x0,  self.x_y0,  self.x_z0,    0,     0,     0  ] #starting conditions
+        lbx = [        0,         0,        0, -10000, -10000, -10000  ]
+        ubx = [     1000,     10000,    10000,  10000,  10000,  10000  ]
+        lbu = [  self.ul,   self.ul,   self.ul] #u_x, u_y, u_z
+        ubu = [  self.um,   self.um,   self.um] #u_x, u_y, u_z
+        btf = [1, 10000] # tf_min tf_max
+
         def terminal_cost0(xf, tf, x0, t0):
                 return tf
     
@@ -91,17 +102,6 @@ class Lopt_dynamics(Node):
                         xf[4] - 0, 
                         xf[5] - 0]
                 return tc
-        
-        #            [ x[0],  x[1],  x[2],  x[3],  x[4],  x[5] ]
-        #            [   x,     y,     z,    Vx,    Vy,    Vz  ]
-        tf0 = 15 # guess tf 
-        xf0 = [ self.x_xf,  self.x_yf,  self.x_zf,    0,     0,     0  ] # target conditions
-        x00 = [ self.x_x0,  self.x_y0,  self.x_z0,    0,     0,     0  ] #starting conditions
-        lbx = [        0,         0,        0, -10000, -10000, -10000  ]
-        ubx = [     1000,     10000,    10000,  10000,  10000,  10000  ]
-        lbu = [  self.ul,   self.ul,   self.ul] #u_x, u_y, u_z
-        ubu = [  self.um,   self.um,   self.um] #u_x, u_y, u_z
-        btf = [1, 10000] # tf_min tf_max
         
         self.res_x, self.res_u, self.res_t = solve(dyn_func=dynamics0, term_cost=terminal_cost0, #runn_cost=running_cost0, 
          term_constr=terminal_constraints0, ocp_tf0=tf0, ocp_btf=btf, ocp_lbu=lbu, ocp_lbx=lbx, ocp_ubu=ubu, ocp_ubx=ubx, ocp_x00=x00, ocp_xf0=xf0)
