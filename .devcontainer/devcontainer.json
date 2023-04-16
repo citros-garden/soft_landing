@@ -7,13 +7,13 @@
 		}
 	},
 	"remoteUser": "ros",
+	"postCreateCommand": "bash ./.devcontainer/install.sh",
 	"runArgs": [
 		"--network=host",
 		"--cap-add=SYS_PTRACE",
 		"--security-opt=seccomp:unconfined",
 		"--security-opt=apparmor:unconfined",
-		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
-		//"--volume=/mnt/wslg:/mnt/wslg"
+		"--volume=/tmp/.X11-unix:/tmp/.X11-unix"
 	],
 	"containerEnv": {
 		"DISPLAY": "${localEnv:DISPLAY}", // Needed for GUI try ":0" for windows
