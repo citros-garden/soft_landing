@@ -60,6 +60,13 @@ class Lopt_dynamics(Node):
         self.g0 = self.get_parameter('g0').get_parameter_value().double_value
 
         self.i = 0
+
+        self.res_x, self.res_u, self.res_t = solve(dyn_func=dynamics0, term_cost=terminal_cost0, #runn_cost=running_cost0, 
+         term_constr=terminal_constraints0, ocp_tf0=tf0, ocp_btf=btf, ocp_lbu=lbu, ocp_lbx=lbx, ocp_ubu=ubu, ocp_ubx=ubx, ocp_x00=x00, ocp_xf0=xf0)
+        
+        self.state_msg = Float64MultiArray()
+        timer_period = self.get_parameter('publish_freq').get_parameter_value().double_value  # frequency of publishing
+        self.timer = self.create_timer(timer_period, self.timer_callback)
         
         #            [ x[0],  x[1],  x[2],  x[3],  x[4],  x[5] ]
         #            [   x,     y,     z,    Vx,    Vy,    Vz  ]
@@ -102,13 +109,8 @@ class Lopt_dynamics(Node):
                         xf[4] - 0, 
                         xf[5] - 0]
                 return tc
-        
-        self.res_x, self.res_u, self.res_t = solve(dyn_func=dynamics0, term_cost=terminal_cost0, #runn_cost=running_cost0, 
-         term_constr=terminal_constraints0, ocp_tf0=tf0, ocp_btf=btf, ocp_lbu=lbu, ocp_lbx=lbx, ocp_ubu=ubu, ocp_ubx=ubx, ocp_x00=x00, ocp_xf0=xf0)
-        
-        self.state_msg = Float64MultiArray()
-        timer_period = self.get_parameter('publish_freq').get_parameter_value().double_value  # frequency of publishing
-        self.timer = self.create_timer(timer_period, self.timer_callback)
+
+
 
     def timer_callback(self):
 
