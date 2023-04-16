@@ -3,8 +3,7 @@
 This is a ROS simulation of soft landing of an object.
 In the ROS system we have two nodes: the first represents the dynamics and the second one is the controller.
 
-![Screenshot from 2023-04-16 11-16-45](https://user-images.githubusercontent.com/114152002/232285040-a73a969e-c4e6-4061-bf26-5e79f44275f7.png)
-
+![Screenshot from 2023-04-16 11-20-43](https://user-images.githubusercontent.com/114152002/232285879-d070707d-d2ef-4f31-ba97-00c10216c572.png)
 
 # System dynamics
 The system's equation of motion is the kinematic equation of a free body fall:
@@ -48,7 +47,7 @@ the controller is based on this paper:
 
 
 # Run the default example:
-Run the example of an object with the initial condition: $r_0 =[10,0,100][m]$ and $v_0 = [0,0,0] [m/s]$ that we want to land in the point %u_0=[0,0,0]% on the moon $g=[0,0,1.62] [m/sec^2]$.
+Run the example of an object with the initial condition: $r_0 =[2000,1000,4000][m]$ and $v_0 = [0,0,0] [m/s]$ that we want to land in the point %u_0=[0,0,0]% on the moon $g=[0,0,1.62] [m/sec^2]$.
 
 first, build the nodes:
 ```sh
