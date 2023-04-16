@@ -3,6 +3,7 @@
 This is a ROS simulation of soft landing of an object.
 In the ROS system we have two nodes: the first represents the dynamics and the second one is the controller.
 
+![Screenshot from 2023-04-16 11-16-45](https://user-images.githubusercontent.com/114152002/232285040-a73a969e-c4e6-4061-bf26-5e79f44275f7.png)
 
 
 # System dynamics
