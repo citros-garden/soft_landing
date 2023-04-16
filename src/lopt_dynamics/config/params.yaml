@@ -1,0 +1,17 @@
+lopt_dynamics:
+  ros__parameters:
+    x_x0: 10.0
+    x_y0: 0.0
+    x_z0: 100.0
+    vx_x0: 0.0
+    vx_y0: 0.0
+    vx_z0: 0.0
+    x_xf: 0.0
+    x_yf: 0.0
+    x_zf: 0.0
+    vx_xf: 0.0
+    vx_yf: 0.0
+    vx_zf: 0.0
+    um: 10
+    ul: 0
+    g0: 1.62
