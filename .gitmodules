@@ -1,0 +1,3 @@
+[submodule "src/lopt_dynamics/resource/lopt"]
+	path = src/lopt_dynamics/resource/lopt
+	url = git@github.com:lulav/lopt.git
