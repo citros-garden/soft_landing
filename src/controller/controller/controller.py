@@ -12,26 +12,34 @@ class Controller(Node):
         self.u_pub = self.create_publisher(Float64MultiArray, '/controller/command', 10)
         self.miss_distance_pub = self.create_publisher(Float64, '/controller/miss_distance', 10)
         self.miss_velocity_pub = self.create_publisher(Float64, '/controller/miss_velocity', 10)
+
         self.state_sub = self.create_subscription(Float64MultiArray, '/dynamics/state', self.state_cb, 10)
+
         self.vg = pyvectorguidance.VectorGuidance()
+
         # define parameters
-        self.declare_parameter('dt', 0.01)       
-        self.declare_parameter('setpoint_r_x', 0.0)
-        self.declare_parameter('setpoint_r_y', 0.0)
-        self.declare_parameter('setpoint_r_z', 0.0)
-        self.declare_parameter('setpoint_v_x', 0.0)
-        self.declare_parameter('setpoint_v_y', 0.0)
-        self.declare_parameter('setpoint_v_z', 0.0)
-        self.declare_parameter('g', 1.62) 
-        self.declare_parameter('um', 20.0)
-        self.declare_parameter('e',0.02)
+        self.declare_parameters(
+            namespace='',
+            parameters=[('dt', 0.01),
+                        ('setpoint_r_x',0.0),
+                        ('setpoint_r_y',0.0),
+                        ('setpoint_r_z',0.0),
+                        ('setpoint_v_x',0.0),
+                        ('setpoint_v_y',0.0),
+                        ('setpoint_v_z',0.0),
+                        ('g',1.62),
+                        ('um', 20.0),
+                        ('e',0.02)])
+      
         self.u_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
         self.state = [] #[rx ,ry ,rz ,vx,vy,vz]
         self.r = []
         self.v = []
         self.miss_distance_msg = Float64()
         self.miss_velocity_msg = Float64()
+
         time.sleep(1)
+
         self.dt = self.get_parameter('dt').get_parameter_value().double_value
         self.setpoint_r_x = self.get_parameter('setpoint_r_x').get_parameter_value().double_value
         self.setpoint_r_y = self.get_parameter('setpoint_r_y').get_parameter_value().double_value
@@ -52,8 +60,6 @@ class Controller(Node):
         v =np.array( [self.v_target[0]-v_tmp[0],self.v_target[1]-v_tmp[1],self.v_target[2]-v_tmp[2]])
         tgo = self.vg.soft_landing_tgo_lq(r,v,self.um,self.g)[0]
         miss_distance = np.linalg.norm(r)
-        print(miss_distance)
-        type(miss_distance)
         miss_velocity= np.linalg.norm(v)
         self.get_logger().info(f"tgo is = {tgo:.3f}, The miss distance is: [{miss_distance:.3f}] and the miss velocity is: [{miss_velocity:.3f}]",throttle_duration_sec=1)
         if tgo > self.e:
@@ -62,7 +68,6 @@ class Controller(Node):
             u = [0,0,0]
             miss_distance = np.linalg.norm(r)
             miss_velocity= np.linalg.norm(v)
-
             self.get_logger().info(f"The miss distance is: [{miss_distance}] and the miss velocity is: [{miss_velocity}]")
             exit()
         u = [float(x) for x in u]

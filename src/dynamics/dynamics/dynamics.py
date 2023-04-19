@@ -9,9 +9,12 @@ class Dynamics(Node):
     def __init__(self):
         super().__init__('dynamics')
         self.state_pub = self.create_publisher(Float64MultiArray , '/dynamics/state', 10)
+
         self.u_sub = self.create_subscription(Float64MultiArray , '/controller/command', self.u_cb, 10)
+
         self.u_cmd =[0,0,0] #[ux ,uy ,uz ]
         self.state_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
+
         self.declare_parameters(
             namespace='',
             parameters=[('dt', 0.01),
@@ -24,7 +27,9 @@ class Dynamics(Node):
                         ('v_x0',0.0),
                         ('v_y0',0.0),
                         ('v_z0',0.0)])
-        time.sleep(8)
+        
+        time.sleep(5)
+
         self.dt = self.get_parameter('dt').get_parameter_value().double_value
         self.g_x = self.get_parameter('g_x').get_parameter_value().double_value
         self.g_y = self.get_parameter('g_y').get_parameter_value().double_value
@@ -35,7 +40,9 @@ class Dynamics(Node):
         self.v_x = self.get_parameter('v_x0').get_parameter_value().double_value
         self.v_y = self.get_parameter('v_y0').get_parameter_value().double_value
         self.v_z = self.get_parameter('v_z0').get_parameter_value().double_value
+
         time.sleep(1)
+
         self.timer = self.create_timer(self.dt, self.step)
 
     def u_cb(self, msg):

@@ -9,6 +9,8 @@ In the ROS system we have two nodes: the first represents the dynamics and the s
 The system's equation of motion is the kinematic equation of a free body fall:
 
 $$ v = \int \left ( u-g \right )dt +v_0 $$
+
+
 $$ r = \int \left ( v \right )dt +r_0 $$
 
 when `u` is the controller fedback , `g` is the gravity vector `r0` , `v0` is the initial conditions of the object.
@@ -47,7 +49,7 @@ the controller is based on this paper:
 
 
 # Run the default example:
-Run the example of an object with the initial condition: $r_0 =[2000,1000,4000][m]$ and $v_0 = [0,0,0] [m/s]$ that we want to land in the point %u_0=[0,0,0]% on the moon $g=[0,0,1.62] [m/sec^2]$.
+Run the example of an object with the initial condition: $r_0 =[2000,1000,4000][m]$ and $v_0 = [0,0,0] [m/s]$ that we want to land in the point $u_0=[0,0,0]$on the moon $g=[0,0,1.62] [m/sec^2]$.
 
 first, build the nodes:
 ```sh
