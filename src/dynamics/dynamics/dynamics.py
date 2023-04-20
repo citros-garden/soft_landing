@@ -9,23 +9,26 @@ class Dynamics(Node):
     def __init__(self):
         super().__init__('dynamics')
         self.state_pub = self.create_publisher(Float64MultiArray , '/dynamics/state', 10)
+
         self.u_sub = self.create_subscription(Float64MultiArray , '/controller/command', self.u_cb, 10)
-         
-        # define parameters
-        self.declare_parameter('dt', 0.01)# seconds
-        self.declare_parameter('g_x',0.0)
-        self.declare_parameter('g_y',0.0)
-        self.declare_parameter('g_z',1.62)
-        self.declare_parameter('r_x0',0.0) #r0
-        self.declare_parameter('r_y0',0.0)
-        self.declare_parameter('r_z0',100.0)
-        self.declare_parameter('v_x0',0.0)
-        self.declare_parameter('v_y0',0.0)
-        self.declare_parameter('v_z0',0.0)
+
         self.u_cmd =[0,0,0] #[ux ,uy ,uz ]
         self.state_msg = Float64MultiArray() #[rx ,ry ,rz ,vx,vy,vz]
 
-        time.sleep(8)
+        self.declare_parameters(
+            namespace='',
+            parameters=[('dt', 0.01),
+                        ('g_x',0.0),
+                        ('g_y',0.0),
+                        ('g_z',1.62),
+                        ('r_x0',0.0),
+                        ('r_y0',0.0),
+                        ('r_z0',0.0),
+                        ('v_x0',0.0),
+                        ('v_y0',0.0),
+                        ('v_z0',0.0)])
+        
+        time.sleep(5)
 
         self.dt = self.get_parameter('dt').get_parameter_value().double_value
         self.g_x = self.get_parameter('g_x').get_parameter_value().double_value
@@ -37,8 +40,9 @@ class Dynamics(Node):
         self.v_x = self.get_parameter('v_x0').get_parameter_value().double_value
         self.v_y = self.get_parameter('v_y0').get_parameter_value().double_value
         self.v_z = self.get_parameter('v_z0').get_parameter_value().double_value
-       
+
         time.sleep(1)
+
         self.timer = self.create_timer(self.dt, self.step)
 
     def u_cb(self, msg):
@@ -52,16 +56,14 @@ class Dynamics(Node):
         self.r_y += (self.v_y * self.dt)
         self.r_z += (self.v_z * self.dt)
         self.r_z = max(0.0,self.r_z)
- 
         if self.r_z <= 0.0:
             self.v_z == max(0.0,self.v_z)
 
     def step(self):
-
         self.solve_ode()
         self.state_msg.data = [self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y, self.v_z]
         self.state_pub.publish(self.state_msg)
-        if self.r_z == 0.0 : # end when we leand
+        if self.r_z < 0.1 : # end when we leand
             exit()
         
 def main(args=None):
@@ -70,7 +72,6 @@ def main(args=None):
     rclpy.spin(dynamics)
     dynamics.destroy_node()
     rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()

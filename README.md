@@ -3,12 +3,14 @@
 This is a ROS simulation of soft landing of an object.
 In the ROS system we have two nodes: the first represents the dynamics and the second one is the controller.
 
-
+![Screenshot from 2023-04-16 11-20-43](https://user-images.githubusercontent.com/114152002/232285879-d070707d-d2ef-4f31-ba97-00c10216c572.png)
 
 # System dynamics
 The system's equation of motion is the kinematic equation of a free body fall:
 
 $$ v = \int \left ( u-g \right )dt +v_0 $$
+
+
 $$ r = \int \left ( v \right )dt +r_0 $$
 
 when `u` is the controller fedback , `g` is the gravity vector `r0` , `v0` is the initial conditions of the object.
@@ -47,7 +49,7 @@ the controller is based on this paper:
 
 
 # Run the default example:
-Run the example of an object with the initial condition: $r_0 =[10,0,100][m]$ and $v_0 = [0,0,0] [m/s]$ that we want to land in the point %u_0=[0,0,0]% on the moon $g=[0,0,1.62] [m/sec^2]$.
+Run the example of an object with the initial condition: $r_0 =[2000,1000,4000][m]$ and $v_0 = [0,0,0] [m/s]$ that we want to land in the point $u_0=[0,0,0]$on the moon $g=[0,0,1.62] [m/sec^2]$.
 
 first, build the nodes:
 ```sh
@@ -58,5 +60,3 @@ then,run the launch file:
 ```sh
     ros2 launch dynamics dynamics_controller.launch.py
 ```
-
-####add simulation in foxglove
