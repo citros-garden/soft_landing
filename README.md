@@ -41,7 +41,11 @@ the controller is based on this paper:
 	```
 3. open the repository in the container from VScode with `reopen in container` option.
 
-
+4. source and build:
+	```sh
+	colcon build
+	source install/local_setup.bash
+	```
 
 # Run the default example
 Run the example of an object with the initial condition: 
