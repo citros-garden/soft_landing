@@ -36,7 +36,7 @@ the controller is based on this paper:
 
 2. open the repository in the VScode:
 	```sh
-	cd ~/citros_soft_landing
+	cd ~/soft_landing
 	code .
 	```
 3. open the repository in the container from VScode with `reopen in container` option.
