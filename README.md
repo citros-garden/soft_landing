@@ -31,32 +31,43 @@ the controller is based on this paper:
 
 1. Clone the repository:
    ```sh
-    git@github.com:lulav/citros_soft_landing.git
+    git@github.com:citros-garden/soft_landing.git
    ```
 
 2. open the repository in the VScode:
 	```sh
-	cd ~/citros_soft_landing
-	code.
+	cd ~/soft_landing
+	code .
 	```
 3. open the repository in the container from VScode with `reopen in container` option.
 
-4. source the workspace:
+4. source and build:
 	```sh
-	
+	colcon build
 	source install/local_setup.bash
 	```
 
+# Run the default example
+Run the example of an object with the initial condition: 
 
-# Run the default example:
-Run the example of an object with the initial condition: $r_0 =[2000,1000,4000][m]$ and $v_0 = [0,0,0] [m/s]$ that we want to land in the point $u_0=[0,0,0]$on the moon $g=[0,0,1.62] [m/sec^2]$.
+$$\overrightarrow{r_0} =[2000,1000,4000][m]$$
 
-first, build the nodes:
+$$\overrightarrow{v_0} = [0,0,0] [m/s]$$
+
+And the goal is to land in the point:
+
+$$u_0=[0,0,0]$$ 
+
+On the moon,so to gravity is: $\overrightarrow{g}=[0,0,1.62] [m/sec^2]$.
+
+Open Foxgolve to view a graphical representation of the simulation.
+In Foxglove add data source: click on Open connection,choose the Rosbridge and in the URL write: ws://localhost:9090 and then click open.
+
+Load the soft landing layout 
+
+
+Run the launch file:
+
 ```sh
-     colcon build
-```
-
-then,run the launch file:
-```sh
-    ros2 launch dynamics dynamics_controller.launch.py
+ros2 launch dynamics dynamics_controller.launch.py
 ```
