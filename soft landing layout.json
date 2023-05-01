@@ -1,0 +1,173 @@
+{
+  "configById": {
+    "Plot!430r6op": {
+      "paths": [
+        {
+          "value": "/controller/miss_distance.data",
+          "enabled": true,
+          "timestampMethod": "receiveTime",
+          "color": "#e34f6c"
+        }
+      ],
+      "minYValue": 0,
+      "maxYValue": 5000,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": false,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "foxglovePanelTitle": "miss distance",
+      "followingViewWidth": 100,
+      "title": "Plot"
+    },
+    "Plot!27pdx1e": {
+      "paths": [
+        {
+          "value": "/controller/miss_velocity.data",
+          "enabled": true,
+          "timestampMethod": "receiveTime",
+          "color": "#4fe393"
+        }
+      ],
+      "minYValue": -2000,
+      "maxYValue": 2000,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": false,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "foxglovePanelTitle": "miss velocity",
+      "followingViewWidth": 100,
+      "title": "Plot"
+    },
+    "RawMessages!4b0jsym": {
+      "diffEnabled": false,
+      "diffMethod": "custom",
+      "diffTopicPath": "",
+      "showFullMessageForDiff": false,
+      "topicPath": "/controller/miss_distance.data"
+    },
+    "RawMessages!35bvvtj": {
+      "diffEnabled": false,
+      "diffMethod": "custom",
+      "diffTopicPath": "",
+      "showFullMessageForDiff": false,
+      "topicPath": "/controller/miss_velocity.data"
+    },
+    "Plot!mymrpt": {
+      "paths": [
+        {
+          "value": "/dynamics/state.data[0]",
+          "enabled": true,
+          "timestampMethod": "receiveTime",
+          "label": "r_x"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/dynamics/state.data[1]",
+          "enabled": true,
+          "label": "r_y"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/dynamics/state.data[2]",
+          "enabled": true,
+          "label": "r_z"
+        }
+      ],
+      "minYValue": 0,
+      "maxYValue": 5000,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": false,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "foxglovePanelTitle": "position",
+      "title": "Plot",
+      "followingViewWidth": 100
+    },
+    "Plot!39oxc8v": {
+      "paths": [
+        {
+          "value": "/dynamics/state.data[3]",
+          "enabled": true,
+          "timestampMethod": "receiveTime",
+          "label": "v_x"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/dynamics/state.data[4]",
+          "enabled": true,
+          "label": "v_y"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/dynamics/state.data[5]",
+          "enabled": true,
+          "label": "v_z"
+        }
+      ],
+      "minYValue": -300,
+      "maxYValue": 500,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": false,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "foxglovePanelTitle": "velocity",
+      "followingViewWidth": 100,
+      "title": "Plot"
+    },
+    "RawMessages!1z96c02": {
+      "diffEnabled": false,
+      "diffMethod": "custom",
+      "diffTopicPath": "",
+      "showFullMessageForDiff": false,
+      "topicPath": "/controller/t_go"
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": {
+    "direction": "row",
+    "first": {
+      "first": "Plot!430r6op",
+      "second": "Plot!27pdx1e",
+      "direction": "column"
+    },
+    "second": {
+      "direction": "row",
+      "first": {
+        "first": {
+          "first": "RawMessages!4b0jsym",
+          "second": "RawMessages!1z96c02",
+          "direction": "column"
+        },
+        "second": "RawMessages!35bvvtj",
+        "direction": "column"
+      },
+      "second": {
+        "first": "Plot!mymrpt",
+        "second": "Plot!39oxc8v",
+        "direction": "column"
+      },
+      "splitPercentage": 35.82172701949861
+    },
+    "splitPercentage": 39.97613365155131
+  }
+}

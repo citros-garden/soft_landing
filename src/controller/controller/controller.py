@@ -12,6 +12,7 @@ class Controller(Node):
         self.u_pub = self.create_publisher(Float64MultiArray, '/controller/command', 10)
         self.miss_distance_pub = self.create_publisher(Float64, '/controller/miss_distance', 10)
         self.miss_velocity_pub = self.create_publisher(Float64, '/controller/miss_velocity', 10)
+        self.t_go_pub = self.create_publisher(Float64, '/controller/t_go', 10)
 
         self.state_sub = self.create_subscription(Float64MultiArray, '/dynamics/state', self.state_cb, 10)
 
@@ -37,6 +38,7 @@ class Controller(Node):
         self.v = []
         self.miss_distance_msg = Float64()
         self.miss_velocity_msg = Float64()
+        self.t_go_msg = Float64()
 
         time.sleep(1)
 
@@ -74,9 +76,11 @@ class Controller(Node):
         self.u_msg.data = u
         self.miss_distance_msg.data = miss_distance
         self.miss_velocity_msg.data = miss_velocity
+        self.t_go_msg.data = tgo
         self.u_pub.publish(self.u_msg)
         self.miss_distance_pub.publish(self.miss_distance_msg)
         self.miss_velocity_pub.publish(self.miss_velocity_msg)
+        self.t_go_pub.publish(self.t_go_msg)
        
 def main(args=None):
     rclpy.init(args=args)
