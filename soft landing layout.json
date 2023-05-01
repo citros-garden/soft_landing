@@ -135,7 +135,7 @@
       "diffMethod": "custom",
       "diffTopicPath": "",
       "showFullMessageForDiff": false,
-      "topicPath": "/controller/t_go"
+      "topicPath": "/controller/t_go.data"
     }
   },
   "globalVariables": {},
