@@ -60,10 +60,11 @@ $$u_0=[0,0,0]$$
 
 On the moon,so to gravity is: $\overrightarrow{g}=[0,0,1.62] [m/sec^2]$.
 
-Open Foxgolve to view a graphical representation of the simulation.
+Open [Foxglove](https://foxglove.dev/) to view a graphical representation of the simulation.
+
 In Foxglove add data source: click on Open connection,choose the Rosbridge and in the URL write: ws://localhost:9090 and then click open.
 
-Load the soft landing layout 
+Then load the soft landing layout: `soft landing layout.json` layout file.
 
 
 Run the launch file:
