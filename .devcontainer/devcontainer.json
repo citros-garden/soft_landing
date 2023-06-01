@@ -40,5 +40,12 @@
 				"betwo.b2-catkin-tools"
 			]
 		}
-	}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+		 "version": "latest",
+		 "moby": true
+		}
+		// "ghcr.io/dhoeric/features/google-cloud-cli:1": {}
+	       }
 }

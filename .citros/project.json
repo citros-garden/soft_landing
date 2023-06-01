@@ -1,0 +1,311 @@
+{
+    "cover": "",
+    "description": "",
+    "git": "",
+    "image": "soft_landing",
+    "is_active": true,
+    "launches": [],
+    "license": "",
+    "name": "soft_landing",
+    "packages": [
+        {
+            "cover": "",
+            "description": "TODO: Package description",
+            "git": "",
+            "launches": [],
+            "license": "TODO: License declaration",
+            "maintainer": "orrlulavspace",
+            "maintainer_email": "orrlulavspace@todo.todo",
+            "name": "controller",
+            "nodes": [
+                {
+                    "entry_point": "controller.controller:main",
+                    "name": "controller",
+                    "parameters": [
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "setpoint_r_x",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "setpoint_r_y",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "setpoint_r_z",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "setpoint_v_x",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "setpoint_v_y",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "setpoint_v_z",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "g",
+                            "parameterType": "float",
+                            "value": 1.62
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "um",
+                            "parameterType": "float",
+                            "value": 20.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "e",
+                            "parameterType": "float",
+                            "value": 0.02
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "dt",
+                            "parameterType": "float",
+                            "value": 0.01
+                        }
+                    ],
+                    "path": "./src/controller/controller/controller.py"
+                }
+            ],
+            "package_xml": "./src/controller/package.xml",
+            "path": "./src/controller",
+            "readme": "./src/controller/README.md",
+            "setup_py": "./src/controller/setup.py"
+        },
+        {
+            "cover": "",
+            "description": "TODO: Package description",
+            "git": "",
+            "launches": [
+                {
+                    "description": "",
+                    "name": "dynamics_controller.launch.py",
+                    "path": "./src/dynamics/launch/dynamics_controller.launch.py"
+                },
+                {
+                    "description": "",
+                    "name": "dynamics.launch.py",
+                    "path": "./src/dynamics/launch/dynamics.launch.py"
+                }
+            ],
+            "license": "TODO: License declaration",
+            "maintainer": "orrlulavspace",
+            "maintainer_email": "orr@lulav.space",
+            "name": "dynamics",
+            "nodes": [
+                {
+                    "entry_point": "dynamics.dynamics:main",
+                    "name": "dynamics",
+                    "parameters": [
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "r_x0",
+                            "parameterType": "float",
+                            "value": 2000.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "r_y0",
+                            "parameterType": "float",
+                            "value": 1000.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "r_z0",
+                            "parameterType": "float",
+                            "value": 4000.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "v_x0",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "v_y0",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "v_z0",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "g_x",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "g_y",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "g_z",
+                            "parameterType": "float",
+                            "value": 1.62
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "dt",
+                            "parameterType": "float",
+                            "value": 0.01
+                        }
+                    ],
+                    "path": "./src/dynamics/dynamics/dynamics.py"
+                }
+            ],
+            "package_xml": "./src/dynamics/package.xml",
+            "path": "./src/dynamics",
+            "readme": "./src/dynamics/README.md",
+            "setup_py": "./src/dynamics/setup.py"
+        },
+        {
+            "cover": "",
+            "description": "Lulav optimal control node (MPOPT included)",
+            "git": "",
+            "launches": [
+                {
+                    "description": "",
+                    "name": "launch.py",
+                    "path": "./src/lopt_dynamics/launch/launch.py"
+                }
+            ],
+            "license": "TODO: License declaration",
+            "maintainer": "gtep96",
+            "maintainer_email": "gleb@lulav.space",
+            "name": "lopt_dynamics",
+            "nodes": [
+                {
+                    "entry_point": "lopt_dynamics.lopt_dynamics:main",
+                    "name": "lopt_dynamics",
+                    "parameters": [
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "x_x0",
+                            "parameterType": "float",
+                            "value": 10.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "x_y0",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "x_z0",
+                            "parameterType": "float",
+                            "value": 100.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "vx_x0",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "vx_y0",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "vx_z0",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "x_xf",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "x_yf",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "x_zf",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "vx_xf",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "vx_yf",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "vx_zf",
+                            "parameterType": "float",
+                            "value": 0.0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "um",
+                            "parameterType": "int",
+                            "value": 10
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "ul",
+                            "parameterType": "int",
+                            "value": 0
+                        },
+                        {
+                            "description": "Parameter loaded from config.yaml",
+                            "name": "g0",
+                            "parameterType": "float",
+                            "value": 1.62
+                        }
+                    ],
+                    "path": "./src/lopt_dynamics/lopt_dynamics/lopt_dynamics.py"
+                }
+            ],
+            "package_xml": "./src/lopt_dynamics/package.xml",
+            "path": "./src/lopt_dynamics",
+            "readme": "./src/lopt_dynamics/README.md",
+            "setup_py": "./src/lopt_dynamics/setup.py"
+        }
+    ],
+    "path": ".",
+    "readme": "# General Info\n\nThis is a ROS simulation of soft landing of an object.\nIn the ROS system we have two nodes: the first represents the dynamics and the second one is the controller.\n\n![Screenshot from 2023-04-16 11-20-43](https://user-images.githubusercontent.com/114152002/232285879-d070707d-d2ef-4f31-ba97-00c10216c572.png)\n\n# System dynamics\nThe system's equation of motion is the kinematic equation of a free body fall:\n\n$$ v = \\int \\left ( u-g \\right )dt +v_0 $$\n\n\n$$ r = \\int \\left ( v \\right )dt +r_0 $$\n\nwhen `u` is the controller fedback , `g` is the gravity vector `r0` , `v0` is the initial conditions of the object.\n\n\n\n# The controller\nBecause we simulate a soft landing, we want that our object to land with the minimum velocity (v_f--->0) at the landing point `u0` we want.\nthe controller is based on this paper:\n\n*S. Gutman, \"Rendezvous and Soft Landing in Closed Form via LQ Optimization,\" 2019 27th Mediterranean Conference on Control and Automation (MED), Akko, Israel, 2019, pp. 536-540, doi: 10.1109/MED.2019.8798572.*\n\n\n\n\n\n# Installation\n\n1. Clone the repository:\n   ```sh\n    git@github.com:citros-garden/soft_landing.git\n   ```\n\n2. open the repository in the VScode:\n\t```sh\n\tcd ~/soft_landing\n\tcode .\n\t```\n3. open the repository in the container from VScode with `reopen in container` option.\n\n4. source and build:\n\t```sh\n\tcolcon build\n\tsource install/local_setup.bash\n\t```\n\n# Run the default example\nRun the example of an object with the initial condition: \n\n$$\\overrightarrow{r_0} =[2000,1000,4000][m]$$\n\n$$\\overrightarrow{v_0} = [0,0,0] [m/s]$$\n\nAnd the goal is to land in the point:\n\n$$u_0=[0,0,0]$$ \n\nOn the moon,so to gravity is: $\\overrightarrow{g}=[0,0,1.62] [m/sec^2]$.\n\nOpen [Foxglove](https://foxglove.dev/) to view a graphical representation of the simulation.\n\nIn Foxglove add data source: click on Open connection,choose the Rosbridge and in the URL write: ws://localhost:9090 and then click open.\n\nThen load the soft landing layout: `soft landing layout.json` layout file.\n\n\nRun the launch file:\n\n```sh\nros2 launch dynamics dynamics_controller.launch.py\n```\n\n## Production Docker\n```bash\ndocker build -t soft_landing .\n\ncitros docker-login\ndocker tag soft_landing us-central1-docker.pkg.dev/citros/lulav/soft_landing\ndocker push us-central1-docker.pkg.dev/citros/lulav/soft_landing\n```",
+    "tags": []
+}
