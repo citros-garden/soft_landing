@@ -72,3 +72,12 @@ Run the launch file:
 ```sh
 ros2 launch dynamics dynamics_controller.launch.py
 ```
+
+## Production Docker
+```bash
+docker build -t soft_landing .
+
+citros docker-login
+docker tag soft_landing us-central1-docker.pkg.dev/citros/lulav/soft_landing
+docker push us-central1-docker.pkg.dev/citros/lulav/soft_landing
+```

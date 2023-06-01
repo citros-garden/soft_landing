@@ -1,0 +1,32 @@
+[2023-06-01 09:06:21,830] [citros.citros-None-None.login:276] [ERROR]: ERROR during authentication attempt: wrong username or password for [orr@lulav.space]
+[2023-06-01 09:07:21,012] [citros.citros-None-None.login:276] [ERROR]: ERROR during authentication attempt: wrong username or password for [orr@lulav.space]
+[2023-06-01 09:09:25,400] [citros.citros-None-None.login:273] [INFO]: Authenticated!
+[2023-06-01 09:09:43,179] [citros.citros-None-None.get_project_packages:257] [DEBUG]:  + get_project_packages ./
+[2023-06-01 09:09:43,179] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/controller
+[2023-06-01 09:09:43,185] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/dynamics
+[2023-06-01 09:09:43,188] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/lopt_dynamics
+[2023-06-01 09:09:43,191] [citros.citros-None-None.get_git_remote_url:362] [INFO]: Inside devcontainer. Cannot communicate with github.
+[2023-06-01 09:09:43,191] [citros.citros-None-None.get_file_content:403] [ERROR]: could not find file ./LICENSE
+[2023-06-01 09:10:08,783] [citros.citros-None-None.get_project_packages:257] [DEBUG]:  + get_project_packages ./
+[2023-06-01 09:10:08,783] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/controller
+[2023-06-01 09:10:08,787] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/dynamics
+[2023-06-01 09:10:08,789] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/lopt_dynamics
+[2023-06-01 09:10:08,791] [citros.citros-None-None.get_git_remote_url:362] [INFO]: Inside devcontainer. Cannot communicate with github.
+[2023-06-01 09:10:08,791] [citros.citros-None-None.get_file_content:403] [ERROR]: could not find file ./LICENSE
+[2023-06-01 09:20:34,116] [citros.citros-None-None.gql_execute:385] [ERROR]: {'extensions': {'exception': {}}, 'message': 'Variable "$simulationId" got invalid value "af76fa86-f5cb-4cf6-887f-3326dbdd13764"; Expected type "UUID". Invalid UUID, expected 32 hexadecimal characters, optionally with hyphens', 'locations': [{'line': 1, 'column': 22}], 'stack': ['Error: Invalid UUID, expected 32 hexadecimal characters, optionally with hyphens', '    at /app/node_modules/graphile-build-pg/node8plus/plugins/PgTypesPlugin.js:327:15', '    at GraphQLScalarType.parseValue (/app/node_modules/graphile-build-pg/node8plus/plugins/PgTypesPlugin.js:195:37)', '    at coerceInputValueImpl (/app/node_modules/graphql/utilities/coerceInputValue.js:128:26)', '    at coerceInputValueImpl (/app/node_modules/graphql/utilities/coerceInputValue.js:54:14)', '    at coerceInputValue (/app/node_modules/graphql/utilities/coerceInputValue.js:37:10)', '    at _loop (/app/node_modules/graphql/execution/values.js:109:69)', '    at coerceVariableValues (/app/node_modules/graphql/execution/values.js:121:16)', '    at getVariableValues (/app/node_modules/graphql/execution/values.js:50:19)', '    at buildExecutionContext (/app/node_modules/graphql/execution/execute.js:203:61)', '    at executeImpl (/app/node_modules/graphql/execution/execute.js:101:20)']}
+Traceback (most recent call last):
+  File "/home/ros/.local/lib/python3.10/site-packages/citros/citros.py", line 382, in gql_execute
+    return self._get_gql_client().execute(gql_query, variable_values=variable_values)
+  File "/home/ros/.local/lib/python3.10/site-packages/gql/client.py", line 403, in execute
+    return self.execute_sync(
+  File "/home/ros/.local/lib/python3.10/site-packages/gql/client.py", line 221, in execute_sync
+    return session.execute(
+  File "/home/ros/.local/lib/python3.10/site-packages/gql/client.py", line 860, in execute
+    raise TransportQueryError(
+gql.transport.exceptions.TransportQueryError: {'extensions': {'exception': {}}, 'message': 'Variable "$simulationId" got invalid value "af76fa86-f5cb-4cf6-887f-3326dbdd13764"; Expected type "UUID". Invalid UUID, expected 32 hexadecimal characters, optionally with hyphens', 'locations': [{'line': 1, 'column': 22}], 'stack': ['Error: Invalid UUID, expected 32 hexadecimal characters, optionally with hyphens', '    at /app/node_modules/graphile-build-pg/node8plus/plugins/PgTypesPlugin.js:327:15', '    at GraphQLScalarType.parseValue (/app/node_modules/graphile-build-pg/node8plus/plugins/PgTypesPlugin.js:195:37)', '    at coerceInputValueImpl (/app/node_modules/graphql/utilities/coerceInputValue.js:128:26)', '    at coerceInputValueImpl (/app/node_modules/graphql/utilities/coerceInputValue.js:54:14)', '    at coerceInputValue (/app/node_modules/graphql/utilities/coerceInputValue.js:37:10)', '    at _loop (/app/node_modules/graphql/execution/values.js:109:69)', '    at coerceVariableValues (/app/node_modules/graphql/execution/values.js:121:16)', '    at getVariableValues (/app/node_modules/graphql/execution/values.js:50:19)', '    at buildExecutionContext (/app/node_modules/graphql/execution/execute.js:203:61)', '    at executeImpl (/app/node_modules/graphql/execution/execute.js:101:20)']}
+[2023-06-01 09:52:01,839] [citros.citros-None-None.get_project_packages:257] [DEBUG]:  + get_project_packages ./
+[2023-06-01 09:52:01,840] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/controller
+[2023-06-01 09:52:01,844] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/dynamics
+[2023-06-01 09:52:01,845] [citros.citros-None-None.get_project_packages:268] [DEBUG]: package_path: ./src/lopt_dynamics
+[2023-06-01 09:52:01,848] [citros.citros-None-None.get_git_remote_url:362] [INFO]: Inside devcontainer. Cannot communicate with github.
+[2023-06-01 09:52:01,849] [citros.citros-None-None.get_file_content:403] [ERROR]: could not find file ./LICENSE

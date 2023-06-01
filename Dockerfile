@@ -32,6 +32,8 @@ RUN colcon build
 RUN pip install pyvectorguidance
 RUN apt update && apt-get install -y ros-humble-rosbridge-suite 
 
+RUN pip install citros
+
 RUN chmod +x ros2_entrypoint.sh
 ENTRYPOINT ["/workspaces/citros_soft_landing/ros2_entrypoint.sh"]
 
