@@ -33,6 +33,7 @@ RUN pip install pyvectorguidance
 RUN apt update && apt-get install -y ros-humble-rosbridge-suite 
 
 RUN pip install citros
+RUN pip install citros --upgrade
 
 RUN chmod +x ros2_entrypoint.sh
 ENTRYPOINT ["/workspaces/citros_soft_landing/ros2_entrypoint.sh"]
