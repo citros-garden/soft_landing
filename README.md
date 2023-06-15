@@ -52,7 +52,7 @@ Run the example of an object with the initial condition:
 
 $$\overrightarrow{r_0} =[2000,1000,4000][m]$$
 
-$$\overrightarrow{v_0} = [0,0,0] [m/s]$$
+$$\overrightarrow{v_0} = [-10,2,-50] [m/s]$$
 
 And the goal is to land in the point:
 
