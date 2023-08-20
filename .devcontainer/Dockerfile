@@ -11,7 +11,7 @@ FROM althack/ros2:humble-dev
 #    && apt-get clean -y \
 #    && rm -rf /var/lib/apt/lists/*
 # ENV DEBIAN_FRONTEND=dialog
-RUN pip install pyvectorguidance
+RUN pip install pyvectorguidance setuptools==58.2.0
 RUN apt update && apt-get install -y ros-humble-rosbridge-suite 
 
 # Set up auto-source of workspace for ros user
