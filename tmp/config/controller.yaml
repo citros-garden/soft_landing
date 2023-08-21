@@ -1,0 +1,12 @@
+controller:
+  ros__parameters:
+    dt: 0.01
+    e: 0.02
+    g: 1.62
+    setpoint_r_x: 0.0
+    setpoint_r_y: 0.0
+    setpoint_r_z: 0.0
+    setpoint_v_x: -217.2397220711022
+    setpoint_v_y: -81.00680753357479
+    setpoint_v_z: -6.70027162411342
+    um: 20.0
