@@ -2,9 +2,19 @@
 WORKSPACE_DIR="/workspaces/soft_landing/"
 
 cd $WORKSPACE_DIR
+colcon build
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+source install/local_setup.bash
 
-git submodule update --init --recursive
 
-pip install -e /workspaces/soft_landing/src/lopt_dynamics/resource/lopt/
+echo "
+# ==============================================
+#   ██████╗██╗████████╗██████╗  ██████╗ ███████╗
+#  ██╔════╝██║╚══██╔══╝██╔══██╗██╔═══██╗██╔════╝
+#  ██║     ██║   ██║   ██████╔╝██║   ██║███████╗
+#  ██║     ██║   ██║   ██╔══██╗██║   ██║╚════██║
+#  ╚██████╗██║   ██║   ██║  ██║╚██████╔╝███████║
+#   ╚═════╝╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝                                        
+# =============================================="
 
 echo "Done installing, ready to develop!"
