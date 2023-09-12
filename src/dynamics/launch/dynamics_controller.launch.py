@@ -3,7 +3,9 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch import LaunchDescription, launch_description_sources
-from launch.actions import IncludeLaunchDescription
+from launch.actions import EmitEvent, IncludeLaunchDescription, RegisterEventHandler, LogInfo
+from launch.event_handlers import OnProcessExit
+from launch.events import Shutdown
 def generate_launch_description():
     ld = LaunchDescription()
     dynamics_config = os.path.join(
@@ -29,34 +31,23 @@ def generate_launch_description():
         parameters = [controller_config]
     )
 
-    free_dynamics=Node(
-        package = 'dynamics',
-        name = 'free_dynamics',
-        executable = 'dynamics',
-        parameters = [{'r_x0': 0.0, 'r_y0': 0.0, 'r_z0': 0.0, 'v_x0': 0.0, 'v_y0': 0.0, 'v_z0': 0.0 , 'g_x':0.0 ,'g_y':0.0 ,'g_z':0.0}],
-        remappings=[
-            ('dynamics/position', '/free_dynamics/position'),
-            ('dynamics/velocity', '/free_dynamics/velocity'),
-            ('controller/command', '/free_controller/command'),
-        ]
-    )
-    free_controller=Node(
-        package = 'controller',
-        name = 'free_controller',
-        executable = 'controller',
-        parameters = [{'setpoint_r_x': 0.0, 'setpoint_r_y': 0.0, 'setpoint_r_z': 10.0 , 'setpoint_v_x': 0.0 , 'setpoint_v_y': 0.0,'setpoint_v_z': 0.0}],
-        remappings=[
-            ('dynamics/position', '/free_dynamics/position'),
-            ('dynamics/velocity', '/free_dynamics/velocity'),
-            ('controller/command', '/free_controller/command'),
-        ]
-        
-    )
     bridge_dir = get_package_share_directory('rosbridge_server')
     bridge_launch =  IncludeLaunchDescription(launch_description_sources.FrontendLaunchDescriptionSource(bridge_dir + '/launch/rosbridge_websocket_launch.xml')) 
+    
+
+    sys_shut_down = RegisterEventHandler(OnProcessExit(
+	        target_action=dynamics,
+    on_exit=[
+                LogInfo(msg=(f'The Scenario has ended!')),
+                EmitEvent(event=Shutdown(
+                    reason='Finished'))
+		            ]		
+	    ))
+
+    
     ld.add_action(bridge_launch)
     ld.add_action(dynamics)
     ld.add_action(controller)
-    # ld.add_action(free_dynamics)
-    # ld.add_action(free_controller)
+    ld.add_action(sys_shut_down)
+
     return ld
