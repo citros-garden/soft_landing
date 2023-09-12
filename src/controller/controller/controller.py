@@ -54,7 +54,8 @@ class Controller(Node):
         self.e = self.get_parameter('e').get_parameter_value().double_value
         self.r_target = [self.setpoint_r_x,self.setpoint_r_y,self.setpoint_r_z]
         self.v_target = [self.setpoint_v_x,self.setpoint_v_y,self.setpoint_v_z]
-        
+
+        self.get_logger().info(f"e = {self.e}")
     def state_cb(self, msg):
         r_tmp = msg.data[0:3]
         v_tmp = msg.data[3:6]

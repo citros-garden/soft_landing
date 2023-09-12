@@ -41,6 +41,7 @@ class Dynamics(Node):
         self.v_y = self.get_parameter('v_y0').get_parameter_value().double_value
         self.v_z = self.get_parameter('v_z0').get_parameter_value().double_value
 
+        self.get_logger().info(f"[v_x0,v_y0,v_z0] = [{self.v_x},{self.v_y},{self.v_z}]")
         time.sleep(1)
 
         self.timer = self.create_timer(self.dt, self.step)
@@ -64,6 +65,7 @@ class Dynamics(Node):
         self.state_msg.data = [self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y, self.v_z]
         self.state_pub.publish(self.state_msg)
         if self.r_z < 0.01 and self.r_y < 0.01 and self.r_x < 0.01: # end when we leand
+            self.get_logger().info(f"[r_x,r_y,r_z] = [{self.r_x},{self.r_y},{self.r_z}]")
             exit()
         
 def main(args=None):
