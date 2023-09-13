@@ -65,7 +65,7 @@ class Dynamics(Node):
         self.state_msg.data = [self.r_x , self.r_y ,self.r_z ,self.v_x ,self.v_y, self.v_z]
         self.state_pub.publish(self.state_msg)
         self.get_logger().info(f"[r_x,r_y,r_z] = [{self.r_x},{self.r_y},{self.r_z}]", throttle_duration_sec=5)
-        if self.r_z < 0.01 and self.r_y < 0.01 and self.r_x < 0.01: # end when we leand
+        if self.r_z < 0.1 and self.r_y < 0.1 and self.r_x < 0.1: # end when we leand
             self.get_logger().info(f"[r_x,r_y,r_z] = [{self.r_x},{self.r_y},{self.r_z}]")
             exit()
         
