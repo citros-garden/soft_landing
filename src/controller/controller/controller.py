@@ -62,7 +62,7 @@ class Controller(Node):
         r =np.array( [self.r_target[0]-r_tmp[0],self.r_target[1]-r_tmp[1],self.r_target[2]-r_tmp[2]])
         v =np.array( [self.v_target[0]-v_tmp[0],self.v_target[1]-v_tmp[1],self.v_target[2]-v_tmp[2]])
         self.get_logger().info(f"[r,v,g] = [{r},{v},{self.g}]", throttle_duration_sec=5)
-        tgo = self.vg.soft_landing_tgo_lq(r,v,self.um,self.g)[0]
+        tgo = self.vg.soft_landing_tgo_lq(r,v,self.um,self.g)
         miss_distance = np.linalg.norm(r)
         miss_velocity= np.linalg.norm(v)
 
