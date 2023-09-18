@@ -49,7 +49,7 @@ class Controller(Node):
         self.setpoint_v_x = self.get_parameter('setpoint_v_x').get_parameter_value().double_value
         self.setpoint_v_y = self.get_parameter('setpoint_v_y').get_parameter_value().double_value
         self.setpoint_v_z = self.get_parameter('setpoint_v_z').get_parameter_value().double_value
-        self.g = [0,0,self.get_parameter('setpoint_v_z').get_parameter_value().double_value]
+        self.g = [0,0,self.get_parameter('g').get_parameter_value().double_value]
         self.um = self.get_parameter('um').get_parameter_value().double_value
         self.e = self.get_parameter('e').get_parameter_value().double_value
         self.r_target = [self.setpoint_r_x,self.setpoint_r_y,self.setpoint_r_z]
