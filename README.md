@@ -18,8 +18,8 @@ when `u` is the controller fedback , `g` is the gravity vector `r0` , `v0` is th
 
 
 # The controller
-Because we simulate a soft landing, we want that our object to land with the minimum velocity (v_f--->0) at the landing point `u0` we want.
-the controller is based on this paper:
+Because we simulate a soft landing, we want that our object to land with the minimum velocity ($\overrightarrow{V_f}$ --> 0) at the landing point that we want.  
+The controller is based on this paper:
 
 *S. Gutman, "Rendezvous and Soft Landing in Closed Form via LQ Optimization," 2019 27th Mediterranean Conference on Control and Automation (MED), Akko, Israel, 2019, pp. 536-540, doi: 10.1109/MED.2019.8798572.*
 
@@ -52,7 +52,7 @@ Run the example of an object with the initial condition:
 
 $$\overrightarrow{r_0} =[2000,1000,4000][m]$$
 
-$$\overrightarrow{v_0} = [-10,2,-50] [m/s]$$
+$$\overrightarrow{v_0} = [5,5,5] [m/s]$$
 
 And the goal is to land in the point:
 
