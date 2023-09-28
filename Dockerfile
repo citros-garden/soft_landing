@@ -21,7 +21,7 @@ RUN echo "source /opt/ros/humble/setup.bash" >> /home/$USERNAME/.bashrc
 RUN echo "source install/local_setup.bash" >> /home/$USERNAME/.bashrc
 
 
-WORKDIR /workspaces/citros_soft_landing
+WORKDIR /workspaces/soft_landing
 
 COPY src src
 COPY ros2_entrypoint.sh ros2_entrypoint.sh
@@ -36,6 +36,6 @@ RUN apt update && apt-get install -y ros-humble-rosbridge-suite
 RUN pip install --no-cache-dir  citros
 
 RUN chmod +x ros2_entrypoint.sh
-ENTRYPOINT ["/workspaces/citros_soft_landing/ros2_entrypoint.sh"]
+ENTRYPOINT ["/workspaces/soft_landing/ros2_entrypoint.sh"]
 
 CMD ["bash"]
