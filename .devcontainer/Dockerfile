@@ -18,3 +18,5 @@ RUN apt update && apt-get install -y ros-humble-rosbridge-suite
 ARG WORKSPACE
 RUN apt update && apt-get install -y ros-humble-rosbridge-suite 
 RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc
+RUN pip install --no-cache-dir --upgrade pip \
+  && pip install --no-cache-dir  citros
