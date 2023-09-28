@@ -2,7 +2,7 @@ FROM ros:humble
 
 ENV ROS_DISTRO humble
 
-# install ros package
+# install ros package.
 RUN apt-get update && apt-get install -y \
     python3-pip \
     curl \      
