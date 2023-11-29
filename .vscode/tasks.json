@@ -11,7 +11,7 @@
             "problemMatcher": []
         },
         {
-            "label": "launch",
+            "label": "run",
             "type": "shell",
             "command": "source install/local_setup.bash && ros2 launch dynamics dynamics_controller.launch.py",
             "problemMatcher": [],
